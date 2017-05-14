@@ -1,0 +1,39 @@
+<h3>Панель администратора</h3>
+
+<h4><%= "Отправлено: #{@message.created_at}" %></h4>
+
+<p><%= "Сообщение: #{@message.text}" %></p>
+<p><%= "Контакт: #{@message.name}, email: #{@message.email}, телефон: #{@message.phone}" %></p>
+
+<hr />
+
+<h4>Комментарии:</h4>
+
+<% @message.comments.each do |comment| %>
+<%= comment.text %>
+<p><%= "Добавлен #{comment.author} #{comment.created_at} " %></p>
+<% end %>
+
+<%= form_for([@message, @message.comments.build]) do |f| %>
+<p>
+    <%= f.text_area :text, class: 'form-control', rows: '3'%>
+  </p>
+
+  <p>
+      <%= f.submit 'Сохранить комментарий', class: 'btn btn-primary'  %>
+  </p>
+  <% end %>
+
+    
+<hr />
+
+
+
+<p><%= link_to 'Все сообщения', messages_path %></p>
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+<p>Добавить новый район в список:</p>
+
+<%= form_for :district, url: districts_path do |f| %>
+
+   <p>
+   <div class="form-group">
+    <%= f.text_field :district, class: 'form-control', placeholder: 'Район' %>
+  </div>
+  </p>
+
+  <%= f.submit 'Добавить район', class: 'btn btn-primary'  %>
+
+  <% end %>

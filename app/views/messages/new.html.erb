@@ -1,0 +1,43 @@
+<h3>Задайте свой вопрос:</h3>
+
+<%= form_for :message, url: messages_path do |f| %>
+
+  <% if @mesasge && @message.errors.any? %>
+  <p>
+    <ul>
+    <% @message.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </p>
+  <% end %>
+
+  
+  <p>
+   <div class="form-group">
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Ваше имя' %>
+  </div>
+  </p>
+
+  <p>
+   <div class="form-group">
+    <%= f.email_field :email, class: 'form-control', placeholder: 'Email' %>
+  </div>
+  </p>
+
+  <p>
+   <div class="form-group">
+    <%= f.telephone_field :phone, class: 'form-control', placeholder: 'Телефон' %>
+  </div>
+  </p>
+
+ <p>
+    <div class="form-group">
+    <%= f.text_area :text, class: 'form-control', rows: '5', placeholder: 'Ваш вопрос' %>
+    </div>
+  </p>
+
+  <%= f.submit 'Отправить', class: 'btn btn-primary'  %>
+
+
+<% end %>

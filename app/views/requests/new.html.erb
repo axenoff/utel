@@ -1,0 +1,102 @@
+<h3>Рассчитайте стоимость подключения вашего участка к электросети:</h3>
+
+<div class="row">
+
+<div class="col-xs-7">
+
+<%= form_for :request, url: requests_path do |f| %>
+
+  <h4>Где расположен ваш участок?</h4>
+
+  <%= f.select :district, options_for_select( @districts.collect { |district| ["#{district.district}", district.district] } ), {}, { class: 'form-control' } %>
+
+  <p>
+   <div class="form-group">
+    <%= f.text_field :address, class: 'form-control', placeholder: 'Введите адрес объекта' %>
+  </div>
+  </p>
+
+  <div class="radio">
+  <%= f.radio_button :house_exist, 'Участок без строений'  %>
+  <%= f.label 'На моем участке пока нет никаких строений, я хочу только установить щит учета', inline: true  %>
+  </div>
+
+  <div class="radio">
+  <%= f.radio_button :house_exist, 'Участок с жилым домом'  %>
+  <%= f.label 'На моем участке построен жилой дом, который нужно подключить к электросети', inline: true  %>
+  </div>
+
+  <div class="radio">
+  <%= f.radio_button :house_exist, 'Участок с постройками'  %>
+  <%= f.label 'На моем участке есть хозяйственные постройки, которые я хочу подключить к электросети', inline: true  %>
+  </div>
+
+
+  <h4>Проходит ли возле вашего участка действующая линия электропередач?</h4>
+  
+  <div class="radio">
+  <%= f.radio_button :line_exist, 'Существующая линия', inline: true   %>
+  <%= f.label 'Да, возле моего участка (на расстоянии до 25 метров) проходит линия электропередач'  %>
+  </div>
+
+  <div class="radio">
+  <%= f.radio_button :line_exist, 'Требуется строительство', inline: true   %>
+  <%= f.label 'Нет, рядом с моим участком действующих ЛЭП нет. Понадобится строительство со стороны сетевой компании'  %>
+  </div>
+
+  <div class="radio">
+  <%= f.radio_button :line_exist, 'Неизвестно', inline: true   %>
+  <%= f.label 'Мне об этом неизвестно'  %>
+  </div>
+  
+
+  <h4>В случае необходимости подключения построек на участке, ввод будет выполнен</h4>
+
+  <div class="radio">
+  <%= f.radio_button :type_of_input, 'Только щит', inline: true   %>
+  <%= f.label 'Мне нужен только щит учета возле границы участка'  %>
+  </div>
+
+  <div class="radio">
+  <%= f.radio_button :type_of_input, 'СИП', inline: true   %>
+  <%= f.label 'Воздушным способом, изолированным проводом СИП'  %>
+  </div>
+
+  <div class="radio">
+  <%= f.radio_button :type_of_input, 'Кабель', inline: true   %>
+  <%= f.label 'Кабелем, проложенным в земле'  %>
+  </div>
+
+
+  <h4>Как с вами связаться?</h4>
+  
+
+   <p>
+   <div class="form-group">
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Ваше имя' %>
+  </div>
+  </p>
+
+  <p>
+   <div class="form-group">
+    <%= f.email_field :email, class: 'form-control', placeholder: 'Email' %>
+  </div>
+  </p>
+
+  <p>
+   <div class="form-group">
+    <%= f.telephone_field :phone, class: 'form-control', placeholder: 'Телефон' %>
+  </div>
+  </p>
+
+  
+
+  <%= f.submit 'Рассчитать стоимость', class: 'btn btn-primary'  %>
+
+
+<% end %>
+</div>
+<div class="col-xs-5">
+<img src="/images/christmas.jpg" class="img-responsive" alt="Responsive image">
+</div>
+</div>

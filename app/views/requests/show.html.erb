@@ -1,0 +1,39 @@
+<h3>Панель администратора</h3>
+
+<h4><%= "Добавлено: #{@request.created_at}" %></h4>
+
+<p><%= "Адрес: #{@request.district}, #{@request.address}, #{@request.line_exist}, #{@request.type_of_input}, #{@request.app_price}" %></p>
+<p><%= "Контакт: #{@request.name}, email: #{@request.email}, телефон: #{@request.phone}" %></p>
+
+<hr />
+
+<h4>Комментарии:</h4>
+
+<% @request.comments.each do |comment| %>
+<%= comment.text %>
+<p><%= "Добавлен #{comment.author} #{comment.created_at} " %></p>
+<% end %>
+
+<%= form_for([@request, @request.comments.build]) do |f| %>
+<p>
+    <%= f.text_area :text, class: 'form-control', rows: '3'%>
+  </p>
+
+  <p>
+      <%= f.submit 'Сохранить комментарий', class: 'btn btn-primary'  %>
+  </p>
+  <% end %>
+
+    
+<hr />
+
+
+
+<p><%= link_to 'Все запросы', requests_path %></p>
+
+
+
+
+
+
+

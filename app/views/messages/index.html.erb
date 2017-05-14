@@ -1,0 +1,30 @@
+<h3>Сообщения</h3>
+<hr />
+<%= form_for :message, url: message_path(request), method: :put do |f| %>
+<% @messages.each do |message| %>
+
+<p><%= "Создано: #{message.created_at}" %></p>
+<p><b>Сообщение: </b><%= message.text %></p>
+<p><%= "Контакт: #{message.name}, email: #{message.email}, телефон: #{message.phone}" %></p>
+
+<% if message.reaction == false %>
+<p><%= "Обработан: " %>
+<%= check_box_tag "message_ids[]", message.id, false  %>
+<% end %>
+
+<% if message.comments.size > 0 %>
+<p><b><%= "Комментарии:" %></b></p>
+<% end %>
+<% message.comments.each do |comment| %>
+<%= comment.text %>
+<br />
+<% end %>
+<br />
+<p><%= link_to 'Добавить комментарий', message_path(message) %></p>
+    
+<hr />
+
+<% end %>
+
+<%= f.submit 'Сохранить изменения', class: 'btn btn-primary'  %>
+<% end %>

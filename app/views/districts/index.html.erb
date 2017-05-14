@@ -1,0 +1,16 @@
+<h3>Список районов</h3>
+
+<% @districts.each do |district| %>
+
+<p>
+<%= district.district %>
+
+<%= link_to 'Редактировать', edit_district_path(district) %> |
+<%= link_to 'Удалить', district_path(district), method: :delete, data: {confirm: 'Вы хотите удалить район из списка?'} %>
+</p>
+
+<% end %>
+
+<p>
+<%= link_to 'Добавить', new_district_path %> 
+</p>

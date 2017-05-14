@@ -1,0 +1,28 @@
+<h3>Запросы</h3>
+<hr />
+<%= form_for :request, url: request_path(request), method: :put do |f| %>
+<% @requests.each do |request| %>
+<p><%="Создан: #{request.created_at}"%></p>
+<p><b>Адрес: </b><%= "#{request.district}, #{request.address}, #{request.line_exist}, #{request.type_of_input}, #{request.app_price}" %></p>
+<p><%= "Контакт: #{request.name}, email: #{request.email}, телефон: #{request.phone}" %></p>
+<% if request.reaction == false %>
+<p><%= "Обработан: " %>
+<%= check_box_tag "request_ids[]", request.id, false  %>
+<% end %>
+
+<% if request.comments.size > 0 %>
+<p><b><%= "Комментарии:" %></b></p>
+<% end %>
+<% request.comments.each do |comment| %>
+<%= comment.text %>
+<br />
+<% end %>
+<br />
+<p><%= link_to 'Добавить комментарий', request_path(request) %></p>
+    
+<hr />
+
+<% end %>
+
+<%= f.submit 'Сохранить изменения', class: 'btn btn-primary'  %>
+<% end %>

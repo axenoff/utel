@@ -1,0 +1,13 @@
+<h3>Редактировать район:</h3>
+
+<%= form_for :district, url: district_path(@district), method: :put do |f| %>
+
+   <p>
+   <div class="form-group">
+    <%= f.text_field :district, class: 'form-control', placeholder: 'Район' %>
+  </div>
+  </p>
+
+  <%= f.submit 'Сохранить', class: 'btn btn-primary'  %>
+
+  <% end %>

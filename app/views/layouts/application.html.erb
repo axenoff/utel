@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>UtelDemo</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+    <div class="container">
+
+     <% if user_signed_in? %>
+
+      <%= "Вы зашли как: #{current_user.username}" %> | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+
+  <% end %>
+
+      <div class="row">
+
+        <div class="col-xs-6 col-xs-offset-1">
+          <img src="/images/utel-pic.png" class="img-responsive" alt="Responsive image">
+        </div>
+        <div class="col-xs-5">
+          <br />
+          <h3>+7(909)169-12-65</h3>
+          <h3>+7(495)123-45-67</h3>
+
+          <br />
+
+          <h4>utelelectro@yandex.ru</h4>
+          <h4>Москва, ул. Хавская, д. 11</h4>
+        </div>
+
+      </div>
+      <hr />
+
+        <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+          
+            <li><%=link_to 'О компании', main_path %></li>
+            <li><%= link_to 'Стоимость подключения', new_request_path %></li>
+            <li><%= link_to 'Задать вопрос', new_message_path %></li>
+            <li><%= link_to 'Личный кабинет', new_user_session_path %></li>
+            <li><%= link_to 'Контакты', contacts_path %></li>
+            <% if current_user.try(:admin?) %>
+              <li><%= link_to 'Панель администратора', admin_path %></li>
+            <% end %>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </nav>
+
+
+    
+      <%= yield %>
+
+    </div>
+
+  </body>
+</html>

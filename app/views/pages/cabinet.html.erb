@@ -1,0 +1,17 @@
+<h3>Личный кабинет клиента</h3>
+<h4>Введите код клиента, отправленный вам по e-mail:</h4>
+
+
+<%= form_for :client, method: :post do |f| %>
+
+<div class="form-group">
+   <%= f.text_field :code, class: 'form-control' %> 
+</div>
+<%= f.submit 'Отправить', class: 'btn btn-primary'  %>
+<% end %>
+
+<%= form_tag searches_path do %>
+  <label for="code">Code</label>
+  <%= text_field_tag :code %>
+ <%= submit_tag "Submit" %>
+<% end %>

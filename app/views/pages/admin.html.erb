@@ -1,0 +1,82 @@
+<h3>Панель администратора</h3>
+
+<hr />
+
+<h4>Клиенты</h4>
+
+<p><%= link_to 'Добавить клиента', new_client_path %></p>
+
+
+<hr />
+
+<h4>Обращения</h4>
+
+
+<%= form_for :message, url: message_path(request), method: :put do |f| %>
+<% @admin_messages.each do |message| %>
+
+<p><b>Вопрос: </b><%= message.text %></p>
+<p><%= "Контакт: #{message.name}, email: #{message.email}, телефон: #{message.phone}" %></p>
+
+<p><%= "Обработан: " %>
+
+<%= check_box_tag "message_ids[]", message.id, false  %>
+
+<% if message.comments.size > 0 %>
+<p><b><%= "Комментарии:" %></b></p>
+<% end %>
+<% message.comments.each do |comment| %>
+<%= comment.text %>
+<br />
+<% end %>
+<br />
+<p><%= link_to 'Добавить комментарий', message_path(message) %></p>
+    
+<hr />
+
+<% end %>
+
+<p><%= link_to 'Все обращения', messages_path %></p>
+
+<%= f.submit 'Сохранить изменения', class: 'btn btn-primary'  %>
+<% end %>
+
+
+
+<hr />
+
+<h4>Запросы</h4>
+
+<%= form_for :request, url: request_path(request), method: :put do |f| %>
+<% @admin_requests.each do |request| %>
+<p><b>Адрес: </b><%= "#{request.district}, #{request.address}, #{request.line_exist}, #{request.type_of_input}, #{request.app_price}" %></p>
+<p><%= "Контакт: #{request.name}, email: #{request.email}, телефон: #{request.phone}" %></p>
+
+<p><%= "Обработан: " %>
+
+<%= check_box_tag "request_ids[]", request.id, false  %>
+
+<% if request.comments.size > 0 %>
+<p><b><%= "Комментарии:" %></b></p>
+<% end %>
+<% request.comments.each do |comment| %>
+<%= comment.text %>
+<br />
+<% end %>
+<br />
+<p><%= link_to 'Добавить комментарий', request_path(request) %></p>
+    
+<hr />
+
+<% end %>
+
+<p><%= link_to 'Все запросы', requests_path %></p>
+
+<%= f.submit 'Сохранить изменения', class: 'btn btn-primary'  %>
+<% end %>
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+<h3>Добавление клиента</h3>
+<hr />
+
+
+<%= form_for :client, url: clients_path do |f| %>
+
+  <h4>Код</h4>
+   <p>
+   <div class="form-group">
+    <%= f.text_field :code, class: 'form-control'%>
+  </div>
+  </p>
+
+
+  <h4>Заказчик</h4>
+   <p>
+   <div class="form-group">
+    <%= f.text_field :name, class: 'form-control'%>
+  </div>
+  </p>
+
+  <h4>Адрес объекта</h4>
+   <p>
+   <div class="form-group">
+    <%= f.text_field :address, class: 'form-control'%>
+  </div>
+  </p>
+
+  <h4>Вид работ</h4>
+   <p>
+   <div class="form-group">
+    <%= f.text_field :object, class: 'form-control'%>
+  </div>
+  </p>
+
+  <h4>Статус</h4>
+   <p>
+  <%= f.select(:status, options_for_select([['1', 1], ['2', 2]]), {}, {class: "form-control"}) %>
+</p>
+
+<%= f.submit 'Сохранить', class: 'btn btn-primary'  %>
+
+  <% end %>
